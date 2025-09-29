@@ -1,4 +1,5 @@
-const API_URL = "http://localhost:4000/api/tasks"; // backend API
+// Use your deployed backend URL here 👇
+const API_URL = "https://your-backend.onrender.com/api/tasks"; 
 
 // Elements
 const taskForm = document.getElementById("taskForm");
