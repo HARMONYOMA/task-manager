@@ -1,19 +1,24 @@
-// server.js
 const express = require("express");
 const cors = require("cors");
-require("dotenv").config();
+const dotenv = require("dotenv");
+const db = require("./db");
 
-const taskRoutes = require("./routes/tasks");
+dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-
 app.use(cors());
 app.use(express.json());
 
-// routes
-app.use("/api/tasks", taskRoutes);
+// 👇 Add this test route
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
 
+// API routes
+app.use("/api/tasks", require("./routes/tasks"));
+
+// Start server
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
