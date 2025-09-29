@@ -1,12 +1,10 @@
-// Use your deployed backend URL here 👇
-const API_URL = "https://your-backend.onrender.com/api/tasks"; 
+const API_URL = "https://task-manager-iatz.onrender.com/api/tasks"; 
 
-// Elements
 const taskForm = document.getElementById("taskForm");
 const taskInput = document.getElementById("taskInput");
 const taskList = document.getElementById("taskList");
 
-// Fetch all tasks on load
+// Fetch all tasks
 async function fetchTasks() {
   taskList.innerHTML = "";
   try {
@@ -18,7 +16,7 @@ async function fetchTasks() {
   }
 }
 
-// Render task to the list
+// Render task
 function renderTask(task) {
   const li = document.createElement("li");
   li.innerHTML = `
@@ -28,7 +26,7 @@ function renderTask(task) {
   taskList.appendChild(li);
 }
 
-// Add new task
+// Add task
 taskForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const title = taskInput.value.trim();
@@ -52,7 +50,7 @@ taskForm.addEventListener("submit", async (e) => {
 async function deleteTask(id) {
   try {
     await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    fetchTasks(); // refresh task list
+    fetchTasks();
   } catch (error) {
     console.error("Error deleting task:", error);
   }
